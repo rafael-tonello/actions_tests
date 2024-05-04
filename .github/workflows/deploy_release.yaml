@@ -23,6 +23,7 @@ jobs:
         
   deploy-release:
     name: release
+    runs-on: ubuntu-latest
     steps:
       - name: releasev1
         uses: actions/create-release@v1
@@ -37,6 +38,7 @@ jobs:
 
   upload-release-asset:
     name: Upload release asset
+    runs-on: ubuntu-latest
     steps:
       - name: upload-asset
         uses: actions/upload-release-asset@v1
