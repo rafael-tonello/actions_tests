@@ -13,7 +13,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Run tests
-        uses: runtests.yaml
+        uses: ./runtests.yaml
         with:
           tests-folder: tests
           main-script: runtests.sh
