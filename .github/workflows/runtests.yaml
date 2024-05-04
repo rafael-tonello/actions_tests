@@ -28,5 +28,5 @@ jobs:
           echo "Running tests..."
           cd ${{ inputs.tests-folder }}
           chmod +x ${{ inputs.main-script }}
-          ./${{ inputs.main-script }}
+          bash -c ./${{ inputs.main-script }}
   
