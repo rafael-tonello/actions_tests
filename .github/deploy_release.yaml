@@ -8,14 +8,14 @@ on:
 jobs:
   run-tests:
     name: Run tests
-    uses: ./.github/workflows/shared/runtests.yaml
+    uses: ./.github/shared/runtests.yaml
     with:
       tests-folder: tests
       main-script: runtests.sh
       
   prepare-release:
     name: Deploy release
-    uses: ./.github/workflows/shared/package_files.yaml
+    uses: ./.github/shared/package_files.yaml
     with:
       #create a name: ShellScriptUtils-v<tag>
       destination-filename: ShellScriptUtils-${{ github.ref_name }}
