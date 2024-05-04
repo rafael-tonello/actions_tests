@@ -15,12 +15,12 @@ this->init(){
     new_f "./src.tests/libs.tests/translate.test.sh" this->translateTests "" 1 "this->tests"
 
 
-    this->utils->printHorizontalLine " [ running tests ] " "="
+    this->utils->printHorizontalLine " [ running tests ] " "=" 2>/dev/null
     this->tests->runTests
     errorCount=$?
 
     echo ""
-    this->utils->printHorizontalLine " [ tests results ] " "="
+    this->utils->printHorizontalLine " [ tests results ] " "=" 2>/dev/null
     echo ""
     this->tests->showTestResults
 

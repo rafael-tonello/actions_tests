@@ -71,6 +71,7 @@ this->printHorizontalLine(){ local centralText=$1; local optionalChar=$2;
     fi
 
     local terminalWidth=$(tput cols)
+    echo "terminalWidth: $terminalWidth"
     local optionalCharLength=${#optionalChar}
 
     local optionalCharString=""
