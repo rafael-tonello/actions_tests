@@ -1,0 +1,44 @@
+#a git hub action to deploy to repository 'releases' sections
+name: ShellScriptUtils - deploy release
+run-name: $${{ github.author }} is deploying a release
+on:
+  tags:
+    - 'v*'
+
+jobs:
+  run-tests:
+    name: Run tests
+    uses: ./.github/workflows/shared/runtests.yaml
+    with:
+      tests-folder: tests
+      main-script: runtests.sh
+      
+  prepare-release:
+    name: Deploy release
+    uses: ./.github/workflows/shared/package_files.yaml
+    with:
+      #create a name: ShellScriptUtils-v<tag>
+      destination-filename: ShellScriptUtils-${{ github.ref_name }}
+        
+  deploy-release:
+    name: release
+    uses: actions/create-release@v1
+    with:
+      draft: false
+      prerelease: false
+      release_name: ${{ steps.version.outputs.version }}
+      tag_name: ${{ github.ref }}
+      body_path: CHANGELOG.md
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+
+  upload-release-asset:
+    name: Upload release asset
+    uses: actions/upload-release-asset@v1
+    with:
+      upload_url: ${{ steps.deploy-release.outputs.upload_url }}
+      asset_path: ${{ steps.prepare-release.outputs.destination-filename }}
+      asset_name: ${{ steps.prepare-release.outputs.destination-filename }}
+      asset_content_type: application/zip
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
