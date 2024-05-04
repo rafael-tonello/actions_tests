@@ -36,6 +36,7 @@ jobs:
           cp -r "$currentFolderName" ShellScriptUtils-${{ github.ref_name }}
           rm -rf ShellScriptUtils-${{ github.ref_name }}/.git
           rm -rf ShellScriptUtils-${{ github.ref_name }}/.github
+          rm -rf ShellScriptUtils-${{ github.ref_name }}/.gitignore
           
           echo "Packing the folder ShellScriptUtils-${{ github.ref_name }}  (excluding .githuba and .git folders) ..."
           tar -czf ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}
@@ -54,6 +55,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+          body_path: CHANGELOG.md
 
       - name: Upload Release Asset
         id: upload-release-asset 
