@@ -36,6 +36,7 @@ jobs:
           
           echo "Packing the folder ShellScriptUtils-${{ github.ref_name }}  (excluding .githuba and .git folders) ..."
           tar -czf ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}
+          mv ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}/
           ls -lha
 
       - name: Step 3 - Use the Upload Artifact GitHub Action
