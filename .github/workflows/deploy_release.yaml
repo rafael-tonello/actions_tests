@@ -29,13 +29,13 @@ jobs:
           ls -lha
           echo "coping files for a new folder"
           echo "reponame: $currentFolderName"
-          echo "destination-filename: ${{ inputs.destination-filename }}"
-          cp -r "$currentFolderName" ${{ inputs.destination-filename }}
-          rm -rf ${{ inputs.destination-filename }}/.git
-          rm -rf ${{ inputs.destination-filename }}/.github
+          echo "destination-filename: ShellScriptUtils-${{ github.ref_name }}"
+          cp -r "$currentFolderName" ShellScriptUtils-${{ github.ref_name }}
+          rm -rf ShellScriptUtils-${{ github.ref_name }}/.git
+          rm -rf ShellScriptUtils-${{ github.ref_name }}/.github
           
-          echo "Packing the folder ${{ inputs.destination-filename }}  (excluding .githuba and .git folders) ..."
-          tar -czf ${{ inputs.destination-filename }}.tar.gz ${{ inputs.destination-filename }}
+          echo "Packing the folder ShellScriptUtils-${{ github.ref_name }}  (excluding .githuba and .git folders) ..."
+          tar -czf ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}
           ls -lha
 
       - name: Step 3 - Use the Upload Artifact GitHub Action
