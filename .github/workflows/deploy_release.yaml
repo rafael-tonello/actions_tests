@@ -13,19 +13,19 @@ jobs:
     with:
       tests-folder: tests
       main-script: runtests.sh
+    
+  run-package:
+    name: Package files
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/package_files.yaml
+    with:
+      destination-filename: ShellScriptUtils-${{ github.ref_name }}
+      
       
   prepare-release:
     name: Deploy release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: preparing release file
-        uses: ./.github/workflows/package_files.yaml
-        with:
-          #create a name: ShellScriptUtils-v<tag>
-          destination-filename: ShellScriptUtils-${{ github.ref_name }}
 
       - name: Step 3 - Use the Upload Artifact GitHub Action
         uses: actions/upload-artifact@v2
