@@ -13,7 +13,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Run tests
-        uses: rafael-tonello/actions_tests/workflows/runtests.yaml
+        uses: rafael-tonello/actions_tests/runtests.yaml
         with:
           tests-folder: tests
           main-script: runtests.sh
