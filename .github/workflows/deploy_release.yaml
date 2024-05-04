@@ -1,6 +1,6 @@
 #a git hub action to deploy to repository 'releases' sections
 name: ShellScriptUtils - deploy release
-run-name: $${{ github.author }} is deploying a release
+run-name: Deploying a release
 on:
   push:
     tags:
