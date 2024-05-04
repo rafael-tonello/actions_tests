@@ -25,6 +25,8 @@ jobs:
         #run tar -czf, excluding .git and .github folders
         run: |
           currentFolderName=${PWD##*/}
+          currFolder=$(pwd)
+          ls -lha
           cd ..
           ls -lha
           echo "coping files for a new folder"
@@ -36,8 +38,8 @@ jobs:
           
           echo "Packing the folder ShellScriptUtils-${{ github.ref_name }}  (excluding .githuba and .git folders) ..."
           tar -czf ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}
-          mkdir -p ShellScriptUtils-${{ github.ref_name }}
-          mv ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}/
+          mkdir -p $currFolder/ShellScriptUtils-${{ github.ref_name }}
+          mv ShellScriptUtils-${{ github.ref_name }}.tar.gz $currFolder/ShellScriptUtils-${{ github.ref_name }}/
           ls -lha
 
       - name: Step 3 - Use the Upload Artifact GitHub Action
