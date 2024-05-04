@@ -23,15 +23,17 @@ jobs:
         
   deploy-release:
     name: release
-    uses: actions/create-release@v1
-    with:
-      draft: false
-      prerelease: false
-      release_name: ${{ steps.version.outputs.version }}
-      tag_name: ${{ github.ref }}
-      body_path: CHANGELOG.md
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: releasev1
+        uses: actions/create-release@v1
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
   upload-release-asset:
     name: Upload release asset
