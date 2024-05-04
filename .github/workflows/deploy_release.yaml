@@ -2,8 +2,9 @@
 name: ShellScriptUtils - deploy release
 run-name: $${{ github.author }} is deploying a release
 on:
-  tags:
-    - 'v[0-9]+.[0-9]+.[0-9]+'
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   run-tests:
