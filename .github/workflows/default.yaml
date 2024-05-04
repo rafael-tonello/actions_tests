@@ -9,7 +9,7 @@ on:
 jobs:
   run-tests:
     name: Run tests
-    uses: ./.github/shared/runtests.yaml
+    uses: ./.github/workflows/runtests.yaml
     with:
       tests-folder: tests
       main-script: runtests.sh
