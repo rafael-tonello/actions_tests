@@ -38,14 +38,15 @@ jobs:
           
           echo "Packing the folder ShellScriptUtils-${{ github.ref_name }}  (excluding .githuba and .git folders) ..."
           tar -czf ShellScriptUtils-${{ github.ref_name }}.tar.gz ShellScriptUtils-${{ github.ref_name }}
-          mkdir -p $currFolder/ShellScriptUtils-${{ github.ref_name }}
-          mv ShellScriptUtils-${{ github.ref_name }}.tar.gz $currFolder/ShellScriptUtils-${{ github.ref_name }}/
+          
+          mv ShellScriptUtils-${{ github.ref_name }}.tar.gz $currFolder/
+          cd $currFolder
           ls -lha
 
       - name: Upload to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: ShellScriptUtils-${{ github.ref_name }}/ShellScriptUtils-${{ github.ref_name }}.tar.gz
+          args: ShellScriptUtils-${{ github.ref_name }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
