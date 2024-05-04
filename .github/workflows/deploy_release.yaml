@@ -16,35 +16,17 @@ jobs:
       
   prepare-release:
     name: Deploy release
-    uses: ./.github/workflows/package_files.yaml
-    with:
-      #create a name: ShellScriptUtils-v<tag>
-      destination-filename: ShellScriptUtils-${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: preparing release file
+        uses: ./.github/workflows/package_files.yaml
+        with:
+          #create a name: ShellScriptUtils-v<tag>
+          destination-filename: ShellScriptUtils-${{ github.ref_name }}
+      - name: Step 3 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: assets-for-download
+          path: ShellScriptUtils-${{ github.ref_name }}
         
-  deploy-release:
-    name: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: releasev1
-        uses: actions/create-release@v1
-        with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
-  upload-release-asset:
-    name: Upload release asset
-    runs-on: ubuntu-latest
-    steps:
-      - name: upload-asset
-        uses: actions/upload-release-asset@v1
-        with:
-          asset_path: ${{ steps.prepare-release.outputs.destination-filename }}
-          asset_name: ${{ steps.prepare-release.outputs.destination-filename }}
-          asset_content_type: application/zip
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+  
